@@ -56,21 +56,21 @@ UserSchema.post("save", function(error, doc, next) {
 	}
 });
 
-UserSchema.pre("remove", function(next) {
-	let user = this;
+// UserSchema.pre("remove", function(next) {
+// 	let user = this;
 
-	user
-		.model("Article")
-		.remove({ _id: { $in: user.articles } })
-		.then(response => {
-			next();
-		})
-		.catch(err => {
-			res.status(400).json({
-				message: err.message,
-				data: err
-			});
-		});
-});
+// 	user
+// 		.model("Article")
+// 		.remove({ _id: { $in: user.articles } })
+// 		.then(response => {
+// 			next();
+// 		})
+// 		.catch(err => {
+// 			res.status(400).json({
+// 				message: err.message,
+// 				data: err
+// 			});
+// 		});
+// });
 
 module.exports = mongoose.model("User", UserSchema);
